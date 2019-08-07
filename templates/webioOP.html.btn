@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+   <title>Current Status</title>
+   <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+
+<body>
+   <h1>Device Listing and Status</h1>
+
+   <table border="1" cellpadding="2" cellspacing="2">
+   <tbody>
+   <tr style="color:#ffffff;" bgcolor="#800000">
+   <th valign="top">Pin#</th>
+   <th valign="top">Mode</th>
+   <th valign="top">Current</th>
+   <th colspan="3" valign="top">GPIO</th>
+   </tr>
+
+
+   {% for pin in pins %}
+   <tr>
+   <td>{{ pins[pin].name }}</td>
+   <td>{{ pins[pin].smode }}</td>
+   {% if pins[pin].mode == 0 %}
+       <td>{{ pins[pin].value }}</td>
+       <td><br></td>
+       <td><br></td>
+       <td><a class="style3" href="/changeMode/{{pin}}/output">OUTPUT</a></td>
+   {% elif pins[pin].mode == 1 %}
+       {% if pins[pin].value == 1 %}
+         <td>on</td>
+         <td><a class="style1" href="/changeValue/{{pin}}/off">turn off</a></td>
+         <td><a class="style4" href="/changeMode/{{pin}}/input">INPUT</a></td>
+         <td><br></td>
+       {% else %}
+         <td>off</td>
+         <td><a class="style2" href="/changeValue/{{pin}}/on">turn on</a></td>
+         <td><a class="style4" href="/changeMode/{{pin}}/input">INPUT</a></td>
+         <td><br></td>
+       {% endif %}
+   {% else %}
+       <td><br></td>
+       <td><br></td>
+       <td><a class="style4" href="/changeMode/{{pin}}/input">INPUT</a></td>
+       <td><a class="style3" href="/changeMode/{{pin}}/output">OUTPUT</a></td>
+   {% endif %}
+   </tr>
+   {% endfor %}
+   </tbody>
+   </table>
+
+
+   {% if message %}
+   <h2>{{ message }}</h2>
+   {% endif %}
+
+</body>
+</html>

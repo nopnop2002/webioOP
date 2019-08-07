@@ -1,0 +1,48 @@
+@charset "Shift_Jis";
+
+a.style1{
+font-size:0.75em;
+display:block;
+width:100px;
+padding-top:10px;
+padding-bottom:10px;
+text-align:center;
+border:2px solid;
+border-color:#aaaaaa #444444 #444444 #aaaaaa;
+}
+
+a.style2{
+font-size:0.75em;
+display:block;
+width:100px;
+padding-top:10px;
+padding-bottom:10px;
+text-align:center;
+border:2px solid;
+border-color:#aaaaaa #444444 #444444 #aaaaaa;
+background:#cccccc;
+}
+
+a.style3{
+font-size:0.75em;
+display:block;
+width:100px;
+padding-top:10px;
+padding-bottom:10px;
+text-align:center;
+border:2px solid;
+border-color:#aaaaaa #444444 #444444 #aaaaaa;
+background:#ee0000;
+}
+
+a.style4{
+font-size:0.75em;
+display:block;
+width:100px;
+padding-top:10px;
+padding-bottom:10px;
+text-align:center;
+border:2px solid;
+border-color:#aaaaaa #444444 #444444 #aaaaaa;
+background:#00ff00;
+}
