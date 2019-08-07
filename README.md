@@ -1,5 +1,6 @@
 # webioOP
-The defective clone of webiopi
+
+Incomplete webiopi clone for OrangePi-PC.
 
 ---
 
