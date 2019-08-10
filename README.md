@@ -10,7 +10,7 @@ Incomplete webiopi clone for OrangePi-PC.
 $ git clone --recursive https://github.com/lanefu/WiringPi-Python-OP.git
 $ sudo apt-get install python-dev python-setuptools swig
 $ cd WiringPi-Python-OP
-$ cd WiringOP/
+$ cd WiringPi/
 $ sudo ./build
 $ cd ..
 ```
