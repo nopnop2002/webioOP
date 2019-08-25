@@ -96,7 +96,7 @@ $ cd webioOP
 $ sudo python ./webioOP-Zero.py
 ```
 
-![webioOP-ZERO-1](https://user-images.githubusercontent.com/6020549/63645211-153c2200-c734-11e9-88b6-dc9a715f4e63.jpg)
+![webioOP-ZERO-1](https://user-images.githubusercontent.com/6020549/63645268-3c472380-c735-11e9-9ecd-2ee9aac2cfcc.jpg)
 
 ---
 
