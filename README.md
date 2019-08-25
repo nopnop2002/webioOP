@@ -76,18 +76,11 @@ $ sudo pip install flask
 
 ---
 
-# Install webioOP
+# Execute webioOP for OrangePi-PC
 
 ```
 $ git clone https://github.com/nopnop2002/webioOP
 $ cd webioOP
-```
-
----
-
-# Execute webioOP for OrangePi-PC
-
-```
 $ sudo python ./webioOP.py
 ```
 
@@ -98,6 +91,8 @@ $ sudo python ./webioOP.py
 # Execute webioOP for OrangePi-ZERO
 
 ```
+$ git clone https://github.com/nopnop2002/webioOP
+$ cd webioOP
 $ sudo python ./webioOP-Zero.py
 ```
 
