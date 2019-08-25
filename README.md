@@ -1,6 +1,6 @@
 # webioOP
 
-Incomplete webiopi clone for OrangePi-PC.
+Incomplete webiopi clone for OrangePi-PC/OrangePi-ZERO.
 
 ---
 
