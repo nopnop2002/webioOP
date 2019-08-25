@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <head>
    <title>Current Status</title>
-   <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
 </head>
 
 <body>
@@ -25,24 +24,24 @@
        <td>{{ pins[pin].value }}</td>
        <td><br></td>
        <td><br></td>
-       <td><a class="style3" href="/changeMode/{{pin}}/output"><img src="{{url_for('static', filename='images/Industry-Feed-Out-icon.png')}}" alt="OUTPUT"/></a></td>
+       <td><a href="/changeMode/{{pin}}/output">OUTPUT</a></td>
    {% elif pins[pin].mode == 1 %}
        {% if pins[pin].value == 1 %}
          <td>on</td>
-         <td><a class="style1" href="/changeValue/{{pin}}/off"><img src="{{url_for('static', filename='images/Button-Turn-On-icon.png')}}" alt="off"/></a></td>
-         <td><a class="style4" href="/changeMode/{{pin}}/input"><img src="{{url_for('static', filename='images/Industry-Feed-In-icon.png')}}" alt="INPUT"/></a></td>
+         <td><a href="/changeValue/{{pin}}/off">turn off</a></td>
+         <td><a href="/changeMode/{{pin}}/input">INPUT</a></td>
          <td><br></td>
        {% else %}
          <td>off</td>
-         <td><a class="style1" href="/changeValue/{{pin}}/on"><img src="{{url_for('static', filename='images/Button-Turn-Off-icon.png')}}" alt="on"/></a></td>
-         <td><a class="style4" href="/changeMode/{{pin}}/input"><img src="{{url_for('static', filename='images/Industry-Feed-In-icon.png')}}" alt="INPUT"/></a></td>
+         <td><a href="/changeValue/{{pin}}/on">turn on</a></td>
+         <td><a href="/changeMode/{{pin}}/input">INPUT</a></td>
          <td><br></td>
        {% endif %}
    {% else %}
        <td><br></td>
        <td><br></td>
-       <td><a class="style4" href="/changeMode/{{pin}}/input"><img src="{{url_for('static', filename='images/Industry-Feed-In-icon.png')}}" alt="INPUT"/></a></td>
-       <td><a class="style3" href="/changeMode/{{pin}}/output"><img src="{{url_for('static', filename='images/Industry-Feed-Out-icon.png')}}" alt="OUTPUT"/></a></td>
+       <td><a href="/changeMode/{{pin}}/input">INPUT</a></td>
+       <td><a href="/changeMode/{{pin}}/output">OUTPUT</a></td>
    {% endif %}
    </tr>
    {% endfor %}
