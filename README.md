@@ -4,7 +4,7 @@ Incomplete webiopi clone for OrangePi-PC.
 
 ---
 
-# Install WiringPi-Python-OP
+# Install WiringPi-Python-OP for OrangePi-PC
 
 ```
 $ git clone --recursive https://github.com/lanefu/WiringPi-Python-OP.git
@@ -44,7 +44,24 @@ If you modify "bindings.i", swig will pass.
 $ swig -python wiringpi.i
 $ sudo python setup.py install
 $ cd tests
-$ sudo python test.py
+$ sudo python ./test.py
+```
+
+---
+
+# Install WiringOP-Zero-Python for OrangePi-ZERO
+
+```
+$ git clone --recursive https://github.com/xpertsavenue/WiringOP-Zero-Python
+$ sudo apt install python-dev python-setuptools swig
+$ cd WiringOP-Zero-Python
+$ cd WiringOP-Zero
+$ sudo ./build
+$ cd ..
+$ swig -python wiringpi.i
+$ sudo python setup.py install
+$ cd tests
+$ sudo python ./test.py
 ```
 
 ---
@@ -64,10 +81,27 @@ $ sudo pip install flask
 ```
 $ git clone https://github.com/nopnop2002/webioOP
 $ cd webioOP
+```
+
+---
+
+# Execute webioOP for OrangePi-PC
+
+```
 $ sudo python ./webioOP.py
 ```
 
 ![webioOP-1](https://user-images.githubusercontent.com/6020549/62622407-3db4d580-b959-11e9-8427-8089cd5225b0.jpg)
+
+---
+
+# Execute webioOP for OrangePi-ZERO
+
+```
+$ sudo python ./webioOP-Zero.py
+```
+
+![webioOP-ZERO-1](https://user-images.githubusercontent.com/6020549/63645211-153c2200-c734-11e9-88b6-dc9a715f4e63.jpg)
 
 ---
 
