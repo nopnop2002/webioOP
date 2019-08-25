@@ -8,7 +8,7 @@ Incomplete webiopi clone for OrangePi-PC.
 
 ```
 $ git clone --recursive https://github.com/lanefu/WiringPi-Python-OP.git
-$ sudo apt-get install python-dev python-setuptools swig
+$ sudo apt install python-dev python-setuptools swig
 $ cd WiringPi-Python-OP
 $ cd WiringPi/
 $ sudo ./build
@@ -52,8 +52,8 @@ $ sudo python test.py
 # Install flask
 
 ```
-$ sudo apt-get install python-pip
-$ sudo apt-get install python-setuptools
+$ sudo apt install python-pip
+$ sudo apt install python-setuptools
 $ sudo pip install flask
 ```
 
