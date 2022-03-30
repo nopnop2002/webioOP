@@ -69,9 +69,10 @@ $ sudo python ./test.py
 # Install flask
 
 ```
-$ sudo apt install python-pip
-$ sudo apt install python-setuptools
-$ sudo pip install flask
+$ sudo apt install python3-pip python3-setuptools
+$ python -m pip install -U pip
+$ python -m pip install -U wheel
+$ python -m pip install flask
 ```
 
 ---
