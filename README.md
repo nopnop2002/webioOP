@@ -5,7 +5,7 @@ Incomplete webiopi clone for OrangePi-PC/OrangePi-ZERO.
 ---
 
 # Install WiringPi-Python-OP for OrangePi-PC
-
+It also works with Orangepi-ONE / Orangepi-Lite / OrangePi-PC Plus.   
 ```
 $ git clone --recursive https://github.com/lanefu/WiringPi-Python-OP.git
 $ sudo apt install python-dev python-setuptools swig
