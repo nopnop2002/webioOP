@@ -5,7 +5,6 @@ An incomplete webiopi clone of the Orange-Pi series.
 # Install flask on root
 
 ```
-$ sudo apt install python3-flask
 $ sudo apt install python3-pip python3-setuptools
 $ sudo python3 -m pip -V
 pip 18.1 from /usr/lib/python3/dist-packages/pip (python 3.7)
