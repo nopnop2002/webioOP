@@ -39,10 +39,6 @@ def readall():
 	for i in PINS: 
 		if DEBUG == 1: print("i={} mode={} smode={}".format(i, PINS[i]['mode'], PINS[i]['smode']))
 
-#wiringpi.wiringPiSetupPhys()
-
-#readall()
-
 @app.route("/")
 def main():
 	# For each pin, read the pin state and store it in the pins dictionary:
