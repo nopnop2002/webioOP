@@ -1,6 +1,6 @@
 # webioOP
 
-Incomplete webiopi clone for OrangePi-PC/OrangePi-ZERO.
+An incomplete webiopi clone of the Orange-Pi series.
 
 # Install flask on root
 
