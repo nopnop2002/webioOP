@@ -76,7 +76,7 @@ PINS = opi_pc.PINS
 $ cd template
 $ cp webioOP.html.btn webioOP.html
 $ cd ..
-$ sudo python ./webioOP.py
+$ sudo python3 ./webioOP.py
 
 ```
 
@@ -88,7 +88,7 @@ $ sudo python ./webioOP.py
 $ cd template
 $ cp webioOP.html.icon webioOP.html
 $ cd ..
-$ sudo python ./webioOP.py
+$ sudo python3 ./webioOP.py
 
 ```
 
