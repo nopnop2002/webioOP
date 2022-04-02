@@ -1,143 +1,128 @@
-import wiringpi
-
 from flask import Flask, render_template, request
 app = Flask(__name__)
+import gpio
+import opi_pc
+#import opi_pc2
+#import opi_pc3
+#import opi_pc4
+#import opi_zero
+#import opi_lite2
 
 INPUT = 0 
 OUTPUT = 1 
 LOW = 0 
 HIGH = 1 
 DEBUG = 0
-PINS = {
-   0 : {'name' : 'PA12', 'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 3},
-   1 : {'name' : 'PA11', 'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 5},
-   2 : {'name' : 'PA6',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 7},
-   3 : {'name' : 'PA13', 'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 8},
-   4 : {'name' : 'PA14', 'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 10},
-   5 : {'name' : 'PA1',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 11},
-   6 : {'name' : 'PD14', 'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 12},
-   7 : {'name' : 'PA0',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 13},
-   8 : {'name' : 'PA3',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 15},
-   9 : {'name' : 'PC4',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 16},
-  10 : {'name' : 'PC7',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 18},
-  11 : {'name' : 'PC0',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 19},
-  12 : {'name' : 'PC1',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 21},
-  13 : {'name' : 'PA2',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 22},
-  14 : {'name' : 'PC2',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 23},
-  15 : {'name' : 'PC3',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 24},
-  16 : {'name' : 'PA21', 'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 26},
-  17 : {'name' : 'PA19', 'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 27},
-  18 : {'name' : 'PA18', 'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 28},
-  19 : {'name' : 'PA7',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 29},
-  20 : {'name' : 'PA8',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 31},
-  21 : {'name' : 'PG8',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 32},
-  22 : {'name' : 'PA9',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 33},
-  23 : {'name' : 'PA10', 'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 35},
-  24 : {'name' : 'PG9',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 36},
-  25 : {'name' : 'PA20', 'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 37},
-  26 : {'name' : 'PG6',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 38},
-  27 : {'name' : 'PG7',  'mode' : 0, 'smode' : '' , 'value' : LOW,  'pin' : 40}
-   }
 
-ALTS = [
-   "IN", "OUT", "ALT5", "ALT4", "ALT0", "ALT1", "ALT2", "ALT3"
-   ]
+PINS = opi_pc.PINS
+#PINS = opi_pc2.PINS
+#PINS = opi_pc3.PINS
+#PINS = opi_pc4.PINS
+#PINS = opi_zero.PINS
+#PINS = opi_lite2.PINS
+
+#ALTS = [ "IN", "OUT", "ALT5", "ALT4", "ALT0", "ALT1", "ALT2", "ALT3" ]
+ALTS = [ "IN", "OUT", "ALT2", "ALT3", "ALT4", "ALT5", "ALT6", "OFF" ]
+
 
 def readall():
-    for i in PINS: 
-        pin = PINS[i]['pin']
-        alt=wiringpi.getAlt(pin)
-        if DEBUG == 1: print "i=" + str(i) + " pin=" + str(pin) + " alt=" + str(alt)
-        value=wiringpi.digitalRead(pin)
-        if DEBUG == 1: print "pin=" + str(pin) + " alt=" + ALTS[alt] + " value=" + str(value)
-        PINS[i]['mode']=alt
-        PINS[i]['smode']=ALTS[alt]
-        PINS[i]['value']=value
-    for i in PINS: 
-        if DEBUG == 1: print "i=" + str(i) + " mode=" + str(PINS[i]['mode']) + " " + PINS[i]['smode']
+	for i in PINS: 
+		pin = PINS[i]['pin']
+		alt=gpio.getAlt(pin)
+		#if DEBUG == 1: print("i={} pin={} alt={}".format(i, pin, alt))
+		value=gpio.digitalRead(pin)
+		#if DEBUG == 1: print("pin={} alt={} value={}".format(pin, ALTS[alt], value))
+		PINS[i]['mode']=alt
+		PINS[i]['smode']=ALTS[alt]
+		PINS[i]['value']=value
 
-wiringpi.wiringPiSetupPhys()
+	for i in PINS: 
+		if DEBUG == 1: print("i={} mode={} smode={}".format(i, PINS[i]['mode'], PINS[i]['smode']))
 
-readall()
+#wiringpi.wiringPiSetupPhys()
+
+#readall()
 
 @app.route("/")
 def main():
-   # For each pin, read the pin state and store it in the pins dictionary:
-   templateData = {
-      'pins' : PINS
-      }
-   # Pass the template data into the template main.html and return it to the user
-   return render_template('webioOP.html', **templateData)
+	# For each pin, read the pin state and store it in the pins dictionary:
+	templateData = {
+		'pins' : PINS
+	}
+	# Pass the template data into the template main.html and return it to the user
+	return render_template('webioOP.html', **templateData)
 
 # change pin mode
 @app.route("/changeMode/<int:changePin>/<action>")
 def actionMode(changePin, action):
-   if DEBUG == 1: print "actionMode:" + str(changePin) + ":" + action
-   # Convert the pin from the URL into an integer:
-#   cpin = int(changePin)
-   pin = PINS[changePin]['pin']
+	if DEBUG == 1: print("actionMode: changePin={} action={}".format(changePin, action))
+	# Convert the pin from the URL into an integer:
+	#cpin = int(changePin)
+	pin = PINS[changePin]['pin']
 
-   # Get the device name for the pin being changed:
-   deviceName = PINS[changePin]['name']
-   if DEBUG == 1: print "pin=" + str(pin) + " deviceName=" + deviceName
-   # If the action part of the URL is "output," execute the code indented below:
-   if action == "output":
-      # Set the pin output:
-      wiringpi.pinMode(pin, OUTPUT)
-      # Save the status message to be passed into the template:
-      message = "Turned " + deviceName + " output."
-   if action == "input":
-      wiringpi.pinMode(pin, INPUT)
-      message = "Turned " + deviceName + " input."
+	# Get the device name for the pin being changed:
+	deviceName = PINS[changePin]['name']
+	if DEBUG == 1: print("pin={} deviceName={}".format(pin, deviceName))
+	# If the action part of the URL is "output," execute the code indented below:
+	if action == "output":
+		# Set the pin output:
+		gpio.pinMode(pin, OUTPUT)
+		# Save the status message to be passed into the template:
+		message = "Turned " + deviceName + " output."
+	if action == "input":
+		gpio.pinMode(pin, INPUT)
+		message = "Turned " + deviceName + " input."
 
-   readall()
+	readall()
 
-   # Along with the pin dictionary, put the message into the template data dictionary:
-   templateData = {
-      'message' : message,
-      'pins' : PINS
-   }
+	# Along with the pin dictionary, put the message into the template data dictionary:
+	templateData = {
+		'message' : message,
+		'pins' : PINS
+	}
 
-   return render_template('webioOP.html', **templateData)
+	return render_template('webioOP.html', **templateData)
 
 
 # change output value
 @app.route("/changeValue/<int:changePin>/<action>")
 def actionValue(changePin, action):
-   if DEBUG == 1: print "actionValue:" + str(changePin) + ":" + action
-   # Convert the pin from the URL into an integer:
-#   cpin = int(changePin)
-   pin = PINS[changePin]['pin']
+	if DEBUG == 1: print("actionValue: changePin={} action={}".format(changePin, action))
+	# Convert the pin from the URL into an integer:
+	#cpin = int(changePin)
+	pin = PINS[changePin]['pin']
 
-   # Get the device name for the pin being changed:
-   deviceName = PINS[changePin]['name']
-   if DEBUG == 1: print "pin=" + str(pin) + " deviceName=" + deviceName
-   # If the action part of the URL is "on," execute the code indented below:
-   if action == "on":
-      # Set the pin high:
-      wiringpi.digitalWrite(pin, HIGH)
-      # Save the status message to be passed into the template:
-      message = "Turned " + deviceName + " on."
-   if action == "off":
-      wiringpi.digitalWrite(pin, LOW)
-      message = "Turned " + deviceName + " off."
-   if action == "toggle":
-      # Read the pin and set it to whatever it isn't (that is, toggle it):
-      value=wringpi.digitalRead(pin)
-      wiringpi.digitalWrite(pin, not value)
-      message = "Toggled " + deviceName + "."
+	# Get the device name for the pin being changed:
+	deviceName = PINS[changePin]['name']
+	if DEBUG == 1: print("pin={} deviceName={}".format(pin, deviceName))
+	# If the action part of the URL is "on," execute the code indented below:
+	if action == "on":
+		# Set the pin high:
+		gpio.digitalWrite(pin, HIGH)
+		# Save the status message to be passed into the template:
+		message = "Turned " + deviceName + " on."
+	if action == "off":
+		gpio.digitalWrite(pin, LOW)
+		message = "Turned " + deviceName + " off."
+	if action == "toggle":
+		# Read the pin and set it to whatever it isn't (that is, toggle it):
+		value=wringpi.digitalRead(pin)
+		gpio.digitalWrite(pin, not value)
+		message = "Toggled " + deviceName + "."
 
-   readall()
+	readall()
 
-   # Along with the pin dictionary, put the message into the template data dictionary:
-   templateData = {
-      'message' : message,
-      'pins' : PINS
-   }
+	# Along with the pin dictionary, put the message into the template data dictionary:
+	templateData = {
+		'message' : message,
+		'pins' : PINS
+	}
 
-   return render_template('webioOP.html', **templateData)
+	return render_template('webioOP.html', **templateData)
 
 if __name__ == "__main__":
-   if DEBUG == 1: app.run(host='0.0.0.0', port=80, debug=True)
-   if DEBUG == 0: app.run(host='0.0.0.0', port=80, debug=False)
+	gpio.wiringPiSetupPhys()
+	readall()
+	if DEBUG == 1: app.run(host='0.0.0.0', port=80, debug=True)
+	if DEBUG == 0: app.run(host='0.0.0.0', port=80, debug=False)
 

@@ -11,14 +11,16 @@
    <tbody>
    <tr style="color:#ffffff;" bgcolor="#800000">
    <th valign="top">Pin#</th>
+   <th valign="top">Gpio</th>
    <th valign="top">Mode</th>
-   <th valign="top">Current</th>
+   <th valign="top">Value</th>
    <th colspan="3" valign="top">GPIO</th>
    </tr>
 
 
    {% for pin in pins %}
    <tr>
+   <td>{{ pins[pin].pin }}</td>
    <td>{{ pins[pin].name }}</td>
    <td>{{ pins[pin].smode }}</td>
    {% if pins[pin].mode == 0 %}

@@ -2,99 +2,69 @@
 
 Incomplete webiopi clone for OrangePi-PC/OrangePi-ZERO.
 
----
-
-# Install WiringPi-Python-OP for OrangePi-PC
-It also works with Orangepi-ONE / Orangepi-Lite / OrangePi-PC Plus.   
-```
-$ git clone --recursive https://github.com/lanefu/WiringPi-Python-OP.git
-$ sudo apt install python-dev python-setuptools swig
-$ cd WiringPi-Python-OP
-$ cd WiringPi/
-$ sudo ./build
-$ cd ..
-```
-
-
-You need to modify "bindings.i" partially.
-
+# Install flask on root
 
 ```
-// Header file WiringPi/wiringPi/wiringPiSPI.h
-int wiringPiSPIGetFd     (int channel) ;
-int wiringPiSPIDataRW    (int channel, unsigned char *data, int len) ;
-#int wiringPiSPISetupMode (int channel, int speed, int mode) ;
-#int wiringPiSPISetup     (int channel, int speed) ;
-```
-
-
-In swig3, comments by # at the beginning of the line are no longer allowed. Change the above part as follows.
-
-```
-// Header file WiringPi/wiringPi/wiringPiSPI.h
-int wiringPiSPIGetFd     (int channel) ;
-int wiringPiSPIDataRW    (int channel, unsigned char *data, int len) ;
-//int wiringPiSPISetupMode (int channel, int speed, int mode) ;
-//int wiringPiSPISetup     (int channel, int speed) ;
-```
-
-If you modify "bindings.i", swig will pass.
-
-```
-$ swig -python wiringpi.i
-$ sudo python setup.py install
-$ cd tests
-$ sudo python ./test.py
-```
-
----
-
-# Install WiringOP-Zero-Python for OrangePi-ZERO
-
-```
-$ git clone --recursive https://github.com/xpertsavenue/WiringOP-Zero-Python
-$ sudo apt install python-dev python-setuptools swig
-$ cd WiringOP-Zero-Python
-$ cd WiringOP-Zero
-$ sudo ./build
-$ cd ..
-$ swig -python wiringpi.i
-$ sudo python setup.py install
-$ cd tests
-$ sudo python ./test.py
-```
-
----
-
-# Install flask
-
-```
+$ sudo apt install python3-flask
 $ sudo apt install python3-pip python3-setuptools
-$ python -m pip install -U pip
-$ python -m pip install -U wheel
-$ python -m pip install flask
+$ sudo python3 -m pip -V
+pip 18.1 from /usr/lib/python3/dist-packages/pip (python 3.7)
+$ sudo python3 -m pip install -U pip
+$ sudo python3 -m pip -V
+pip 22.0.4 from /home/orangepi/.local/lib/python3.7/site-packages/pip (python 3.7)
+$ sudo python3 -m pip install -U wheel
+$ sudo python3 -m pip install flask
 ```
 
----
+# Install WiringOP library provided by xunlong
+Install from [here](https://github.com/orangepi-xunlong/wiringOP).
 
-# Execute webioOP for OrangePi-PC
 
+# Build python wrapper
 ```
+$ sudo apt install python3-dev python3-pip
 $ git clone https://github.com/nopnop2002/webioOP
 $ cd webioOP
-$ sudo python ./webioOP.py
+$ python3 setup.py build
+$ sudo python3 setup.py install
+$ python3 -m pip list -l | grep Gpio
+GpioMethod          1.0
+```
+
+# Test python wrapper
+```
+$ sudo python3 ./gpio_test.py
+```
+
+
+# For OrangePi-PC
+
+```
+$ cd $HOME/webioOP
+$ sudo python3 ./webioOP.py
 ```
 
 ![webioOP-1](https://user-images.githubusercontent.com/6020549/62622407-3db4d580-b959-11e9-8427-8089cd5225b0.jpg)
 
 ---
 
-# Execute webioOP for OrangePi-ZERO
-
+# Other than Orange Pi-PC
+Edit this.
 ```
-$ git clone https://github.com/nopnop2002/webioOP
-$ cd webioOP
-$ sudo python ./webioOP-Zero.py
+$ vi webioOP.py
+import opi_pc
+#import opi_pc2
+#import opi_pc3
+#import opi_pc4
+#import opi_zero
+#import opi_lite2
+
+PINS = opi_pc.PINS
+#PINS = opi_pc2.PINS
+#PINS = opi_pc3.PINS
+#PINS = opi_pc4.PINS
+#PINS = opi_zero.PINS
+#PINS = opi_lite2.PINS
 ```
 
 ![webioOP-ZERO-1](https://user-images.githubusercontent.com/6020549/63645268-3c472380-c735-11e9-9ecd-2ee9aac2cfcc.jpg)
